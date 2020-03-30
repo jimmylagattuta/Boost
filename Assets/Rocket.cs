@@ -7,6 +7,8 @@ public class Rocket : MonoBehaviour
     [SerializeField] float rcsThrust = 100f;
     [SerializeField] float mainThrust = 100f;
     [SerializeField] float levelLoadDelay = 2f;
+    [SerializeField] float levelLoadDelayFast = 0.5f;
+    
     [SerializeField] AudioClip mainEngine;
     [SerializeField] AudioClip winSound;
     [SerializeField] AudioClip explosionSound;
@@ -24,11 +26,12 @@ public class Rocket : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //float sceneId = SceneManager.GetActiveScene().buildIndex;
         rigidBody = GetComponent<Rigidbody>();
         audioSource = GetComponent<AudioSource>();
 
-    }
 
+    }
     // Update is called once per frame
     void Update()
     {
@@ -36,9 +39,10 @@ public class Rocket : MonoBehaviour
         {
             RespondToThrustInput();
             RespondToRotateInput();
+            RespondToNextLevel();
+            RespondToNoCollisions();
         }
     }
-
     void OnCollisionEnter(Collision collision)
     {
         if (state != State.Alive) { return; } //ignore collisions
@@ -66,6 +70,14 @@ public class Rocket : MonoBehaviour
         winParticles.Play();
         Invoke("LoadNextLevel", levelLoadDelay);
     }
+    private void StartSuccessSequenceSkip()
+    {
+        state = State.Transcending;
+        audioSource.Stop();
+        audioSource.PlayOneShot(winSound);
+        winParticles.Play();
+        Invoke("LoadNextLevel", levelLoadDelayFast);
+    }
     private void StartDeathSequence()
     {
         state = State.Dying;
@@ -75,10 +87,11 @@ public class Rocket : MonoBehaviour
         mainEngineParticles.Stop();
         Invoke("LoadFirstLevel", levelLoadDelay);
     }
-
     private void LoadNextLevel()
     {
-        SceneManager.LoadScene(1); //todo allow for more than 2 levels
+        int sceneId = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(sceneId + 1);
+        //SceneManager.LoadScene(1);
     }
     private void LoadFirstLevel()
     {
@@ -107,6 +120,14 @@ public class Rocket : MonoBehaviour
         }
         mainEngineParticles.Play();
     }
+    private void RespondToNoCollisions()
+    {
+        if (Input.GetKey(KeyCode.C))
+        {
+            //turn off collisions
+            print("C typed");
+        }
+    }
     private void RespondToRotateInput()
     {
         rigidBody.freezeRotation = true; //take manual control of rotation
@@ -122,6 +143,13 @@ public class Rocket : MonoBehaviour
         }
         rigidBody.freezeRotation = false; //resume physics control of rotation
     }
+    private void RespondToNextLevel()
+    {
+        if (Input.GetKey(KeyCode.L))
+        {
+            //next level, how do i get the level id to go to the next
+            StartSuccessSequenceSkip();
+        }
 
-
+    }
 }
