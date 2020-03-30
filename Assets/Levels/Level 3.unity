@@ -371,6 +371,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rocket Ship 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2103844065464262163, guid: ec157e9e6ed4d403795a300a5836ddd7,
+        type: 3}
+      propertyPath: mainThrust
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 2103844065464262254, guid: ec157e9e6ed4d403795a300a5836ddd7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -497,6 +502,26 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7029ee2d7d3384f69849162541aaefdf, type: 3}
+--- !u!1 &725012660 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2712064481995329752, guid: 224f237e89cc44e008e6013551047937,
+    type: 3}
+  m_PrefabInstance: {fileID: 799358097}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &725012661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 725012660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b7e3c9b6d3c64ba696847865e9fe705, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementVector: {x: 0, y: -200, z: 0}
+  period: 7
 --- !u!1001 &799358097
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -971,12 +996,12 @@ PrefabInstance:
     - target: {fileID: 5847474333642862753, guid: b7978bff2df4749ce9f046446bef68f5,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 53.6
+      value: 24.3
       objectReference: {fileID: 0}
     - target: {fileID: 5847474333642862753, guid: b7978bff2df4749ce9f046446bef68f5,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -114.8
+      value: -64.5
       objectReference: {fileID: 0}
     - target: {fileID: 5847474333642862753, guid: b7978bff2df4749ce9f046446bef68f5,
         type: 3}
@@ -1025,6 +1050,26 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b7978bff2df4749ce9f046446bef68f5, type: 3}
+--- !u!1 &1895417792 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2712064481995329752, guid: 224f237e89cc44e008e6013551047937,
+    type: 3}
+  m_PrefabInstance: {fileID: 157162487}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1895417793
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1895417792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b7e3c9b6d3c64ba696847865e9fe705, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementVector: {x: 0, y: -200, z: 0}
+  period: 3
 --- !u!1001 &1902294287
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1257,6 +1302,46 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 7a83367b54b82410693d5749920af63d, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 224f237e89cc44e008e6013551047937, type: 3}
+--- !u!1 &1966396953 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2712064481995329752, guid: 224f237e89cc44e008e6013551047937,
+    type: 3}
+  m_PrefabInstance: {fileID: 1173969009}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1966396954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1966396953}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b7e3c9b6d3c64ba696847865e9fe705, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementVector: {x: 0, y: 200, z: 0}
+  period: 4
+--- !u!1 &2004133664 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2712064481995329752, guid: 224f237e89cc44e008e6013551047937,
+    type: 3}
+  m_PrefabInstance: {fileID: 1961656609}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2004133665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2004133664}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b7e3c9b6d3c64ba696847865e9fe705, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementVector: {x: 0, y: -190, z: 10}
+  period: 3
 --- !u!1 &2094807616 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2712064481995329752, guid: 224f237e89cc44e008e6013551047937,
@@ -1275,5 +1360,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b7e3c9b6d3c64ba696847865e9fe705, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementVector: {x: 10, y: 10, z: 10}
-  period: 2
+  movementVector: {x: 0, y: 800, z: 0}
+  period: 6
