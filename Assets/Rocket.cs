@@ -1,6 +1,4 @@
 ﻿//can be removed
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -8,9 +6,14 @@ public class Rocket : MonoBehaviour
 {
     [SerializeField] float rcsThrust = 100f;
     [SerializeField] float mainThrust = 100f;
+    [SerializeField] float levelLoadDelay = 2f;
     [SerializeField] AudioClip mainEngine;
     [SerializeField] AudioClip winSound;
     [SerializeField] AudioClip explosionSound;
+
+    [SerializeField] ParticleSystem mainEngineParticles;
+    [SerializeField] ParticleSystem winParticles;
+    [SerializeField] ParticleSystem explosionParticles;
 
     Rigidbody rigidBody;
     AudioSource audioSource;
@@ -29,7 +32,7 @@ public class Rocket : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       if (state == State.Alive)
+        if (state == State.Alive)
         {
             RespondToThrustInput();
             RespondToRotateInput();
@@ -60,15 +63,19 @@ public class Rocket : MonoBehaviour
         state = State.Transcending;
         audioSource.Stop();
         audioSource.PlayOneShot(winSound);
-        Invoke("LoadNextLevel", 3f); //parameterise time
+        winParticles.Play();
+        Invoke("LoadNextLevel", levelLoadDelay);
     }
     private void StartDeathSequence()
     {
         state = State.Dying;
         audioSource.Stop();
         audioSource.PlayOneShot(explosionSound);
-        Invoke("LoadFirstLevel", 3f);
+        explosionParticles.Play();
+        mainEngineParticles.Stop();
+        Invoke("LoadFirstLevel", levelLoadDelay);
     }
+
     private void LoadNextLevel()
     {
         SceneManager.LoadScene(1); //todo allow for more than 2 levels
@@ -86,23 +93,19 @@ public class Rocket : MonoBehaviour
         else
         {
             audioSource.Stop();
-        }
-
-        //extra boost
-        if (Input.GetKey(KeyCode.P))
-        {
-            rigidBody.AddRelativeForce(Vector3.up);
-   
+            mainEngineParticles.Stop();
         }
     }
     private void ApplyThrust()
     {
         //AddRelativeForce to make ship go in one direction
-        rigidBody.AddRelativeForce(Vector3.up * mainThrust);
+        //float thrustThisFrame = mainThrust * Time.deltaTime; doesnt work
+        rigidBody.AddRelativeForce(Vector3.up * mainThrust); // * Time.deltaTime makes it frame rate independent
         if (!audioSource.isPlaying)
         {
             audioSource.PlayOneShot(mainEngine);
         }
+        mainEngineParticles.Play();
     }
     private void RespondToRotateInput()
     {
@@ -112,10 +115,13 @@ public class Rocket : MonoBehaviour
         if (Input.GetKey(KeyCode.A))    //either A or D not both
         {
             transform.Rotate(Vector3.forward * rotationThisFrame);
-        } else if (Input.GetKey(KeyCode.D))
+        }
+        else if (Input.GetKey(KeyCode.D))
         {
             transform.Rotate(-Vector3.forward * rotationThisFrame);
         }
         rigidBody.freezeRotation = false; //resume physics control of rotation
     }
+
+
 }
