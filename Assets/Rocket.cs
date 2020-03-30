@@ -20,7 +20,7 @@ public class Rocket : MonoBehaviour
     Rigidbody rigidBody;
     AudioSource audioSource;
 
-    enum State { Alive, Dying, Transcending };
+    enum State { Alive, Dying, Transcending, FreeMode };
     State state = State.Alive;
 
     // Start is called before the first frame update
@@ -35,7 +35,7 @@ public class Rocket : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (state == State.Alive)
+        if (state == State.Alive || state == State.FreeMode)
         {
             RespondToThrustInput();
             RespondToRotateInput();
@@ -45,7 +45,9 @@ public class Rocket : MonoBehaviour
     }
     void OnCollisionEnter(Collision collision)
     {
-        if (state != State.Alive) { return; } //ignore collisions
+        if (state != State.Alive || state == State.FreeMode) { return; } //ignore collisions
+        print("collision.gameObject.tag");
+        print(collision.gameObject.tag);
 
         switch (collision.gameObject.tag)
         {
@@ -122,10 +124,17 @@ public class Rocket : MonoBehaviour
     }
     private void RespondToNoCollisions()
     {
-        if (Input.GetKey(KeyCode.C))
+        if (Input.GetKeyDown(KeyCode.C))
         {
-            //turn off collisions
-            print("C typed");
+            if (state != State.FreeMode)
+            {
+                print("on");
+                state = State.FreeMode;
+            } else
+            {
+                print("off");
+                state = State.Alive;
+            }
         }
     }
     private void RespondToRotateInput()
