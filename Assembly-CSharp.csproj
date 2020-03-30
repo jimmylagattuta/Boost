@@ -65,6 +65,7 @@
   <ItemGroup>
     <Compile Include="Assets\Oscillator.cs" />
     <Compile Include="Assets\Rocket.cs" />
+    <Compile Include="Assets\VerticalWalls.cs" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>/Users/jimmylagattuta/Documents/UnityDev/Project_Boost/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
