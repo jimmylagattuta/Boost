@@ -35,10 +35,10 @@ RenderSettings:
   m_DefaultReflectionMode: 0
   m_DefaultReflectionResolution: 128
   m_ReflectionBounces: 1
-  m_ReflectionIntensity: 0.3
+  m_ReflectionIntensity: 0.5
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.24871969, g: 0.2788955, b: 0.32637155, a: 0.3}
+  m_IndirectSpecularColor: {r: 0.32075945, g: 0.3580927, b: 0.4168297, a: 0.5}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -302,6 +302,36 @@ PrefabInstance:
     - target: {fileID: 2103844065464262254, guid: ec157e9e6ed4d403795a300a5836ddd7,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2106781476891507924, guid: ec157e9e6ed4d403795a300a5836ddd7,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2106781476891507924, guid: ec157e9e6ed4d403795a300a5836ddd7,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2106781476891507924, guid: ec157e9e6ed4d403795a300a5836ddd7,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2106781476891507924, guid: ec157e9e6ed4d403795a300a5836ddd7,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2106781476891507924, guid: ec157e9e6ed4d403795a300a5836ddd7,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2106781476891507924, guid: ec157e9e6ed4d403795a300a5836ddd7,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -1541,11 +1571,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Directional Light
-      objectReference: {fileID: 0}
-    - target: {fileID: 6393009914815462132, guid: 185b4434cd6b94b4db961d8b0dc2c562,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6393009914815462134, guid: 185b4434cd6b94b4db961d8b0dc2c562,
         type: 3}
