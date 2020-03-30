@@ -17,7 +17,6 @@ public class VerticalWalls : MonoBehaviour
     {
         startingPos = transform.position;
     }
-
     // Update is called once per frame
     void Update()
     {

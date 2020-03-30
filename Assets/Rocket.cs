@@ -8,7 +8,7 @@ public class Rocket : MonoBehaviour
     [SerializeField] float mainThrust = 100f;
     [SerializeField] float levelLoadDelay = 2f;
     [SerializeField] float levelLoadDelayFast = 0.5f;
-    
+
     [SerializeField] AudioClip mainEngine;
     [SerializeField] AudioClip winSound;
     [SerializeField] AudioClip explosionSound;
@@ -20,7 +20,7 @@ public class Rocket : MonoBehaviour
     Rigidbody rigidBody;
     AudioSource audioSource;
 
-    enum State { Alive, Dying, Transcending, FreeMode };
+    enum State { Alive, Dying, Transcending, FreeMode, NoBoost };
     State state = State.Alive;
 
     // Start is called before the first frame update
@@ -35,17 +35,41 @@ public class Rocket : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //is position at x:-6 y: 20? turn off thruster
+        //print("rigidBody.transfor");
+        //print(rigidBody.transform);
+        //print("rigidBody.position.x");
+        //print(rigidBody.position.x);
+        // goal
+
         if (state == State.Alive || state == State.FreeMode)
         {
+
+            if (rigidBody.position.x >= -5f)
+            {
+
+                print("thrustors off");
+                state = State.NoBoost;
+                audioSource.PlayOneShot(explosionSound);
+
+                Invoke("StopParticles", 0.2F);
+
+            }
             RespondToThrustInput();
             RespondToRotateInput();
             RespondToNextLevel();
             RespondToNoCollisions();
         }
     }
+    private void StopParticles()
+    {
+        mainEngineParticles.Stop();
+        audioSource.Stop();
+
+    }
     void OnCollisionEnter(Collision collision)
     {
-        if (state != State.Alive || state == State.FreeMode) { return; } //ignore collisions
+        if (state != State.Alive || state == State.FreeMode && state != State.NoBoost) { return; } //ignore collisions
         print("collision.gameObject.tag");
         print(collision.gameObject.tag);
 
@@ -128,11 +152,9 @@ public class Rocket : MonoBehaviour
         {
             if (state != State.FreeMode)
             {
-                print("on");
                 state = State.FreeMode;
             } else
             {
-                print("off");
                 state = State.Alive;
             }
         }
