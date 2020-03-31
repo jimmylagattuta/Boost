@@ -8,7 +8,7 @@ public class Rocket : MonoBehaviour
     [SerializeField] float mainThrust = 100f;
     [SerializeField] float levelLoadDelay = 2f;
     [SerializeField] float levelLoadDelayFast = 0.5f;
-    
+
     [SerializeField] AudioClip mainEngine;
     [SerializeField] AudioClip winSound;
     [SerializeField] AudioClip explosionSound;
@@ -35,6 +35,13 @@ public class Rocket : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //is position at x:-6 y: 20? turn off thruster
+        //print("rigidBody.transfor");
+        //print(rigidBody.transform);
+        //print("rigidBody.position.x");
+        //print(rigidBody.position.x);
+        // goal
+
         if (state == State.Alive || state == State.FreeMode)
         {
             RespondToThrustInput();
@@ -45,21 +52,25 @@ public class Rocket : MonoBehaviour
     }
     void OnCollisionEnter(Collision collision)
     {
+        print("Collision");
         if (state != State.Alive || state == State.FreeMode) { return; } //ignore collisions
-        print("collision.gameObject.tag");
-        print(collision.gameObject.tag);
 
         switch (collision.gameObject.tag)
         {
             case "Friendly":
                 //do nothing
+                print("Inner Collision");
 
                 break;
             case "Finish":
+                print("Inner Collision");
+
                 StartSuccessSequence();
                 break;
             default:
                 //kill player
+                print("Inner Collision");
+
                 StartDeathSequence();
                 break;
         }
@@ -128,11 +139,9 @@ public class Rocket : MonoBehaviour
         {
             if (state != State.FreeMode)
             {
-                print("on");
                 state = State.FreeMode;
             } else
             {
-                print("off");
                 state = State.Alive;
             }
         }
