@@ -1,9 +1,10 @@
 ﻿<Properties StartupConfiguration="{B1A31B9A-9888-9E62-3DE9-079EDAC683B5}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/RocketExplodeAtX-5.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="../../../../../Tempspace.config">
     <Files>
       <File FileName="Assets/Oscillator.cs" Line="23" Column="6" />
-      <File FileName="Assets/Rocket.cs" Line="68" Column="37" />
-      <File FileName="Assets/RocketExplodeAtX-5.cs" Line="5" Column="22" />
+      <File FileName="Assets/Rocket.cs" Line="25" Column="1" />
+      <File FileName="Assets/RocketExplodeAtX.cs" Line="17" Column="50" />
+      <File FileName="../../../../../Tempspace.config" Line="174" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />

@@ -16,11 +16,12 @@ public class Rocket : MonoBehaviour
     [SerializeField] ParticleSystem mainEngineParticles;
     [SerializeField] ParticleSystem winParticles;
     [SerializeField] ParticleSystem explosionParticles;
+    [SerializeField] ParticleSystem smokeEngineParticles;
 
     Rigidbody rigidBody;
     AudioSource audioSource;
 
-    enum State { Alive, Dying, Transcending, FreeMode };
+    enum State { Alive, Dying, Transcending, FreeMode, NoBoost };
     State state = State.Alive;
 
     // Start is called before the first frame update
@@ -35,41 +36,84 @@ public class Rocket : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //is position at x:-6 y: 20? turn off thruster
-        //print("rigidBody.transfor");
-        //print(rigidBody.transform);
-        //print("rigidBody.position.x");
-        //print(rigidBody.position.x);
-        // goal
-
         if (state == State.Alive || state == State.FreeMode)
         {
+            //is position at x: -6 y: 20 ? turn off thruster
+            if (rigidBody.position.x >= -5f)
+            {
+
+                print("thrustors off");
+                state = State.NoBoost;
+                Invoke("PlayExplosion", 0.1f);
+                Invoke("StopParticles", 0.2F);
+
+            }
             RespondToThrustInput();
             RespondToRotateInput();
             RespondToNextLevel();
             RespondToNoCollisions();
         }
     }
+    private void PlayExplosion()
+    {
+        audioSource.PlayOneShot(explosionSound);
+    }
+    private void StopParticles()
+    {
+        print("MainEngineParticles.Stop()");
+        mainEngineParticles.Stop();
+        smokeEngineParticles.Play();
+
+
+    }
     void OnCollisionEnter(Collision collision)
     {
-        print("Collision");
-        if (state != State.Alive || state == State.FreeMode) { return; } //ignore collisions
+        //print("Collision");
+        if (state != State.NoBoost)
+        {
+            if (state != State.Alive || state == State.FreeMode)
+            {
+                //print("Collisions Ignored");
+                //print("state");
+                //print(state);
+                return;
+            } //ignore collisions ^
+        }
 
+
+        //if (state == State.NoBoost)
+        //{
+        //    print("NoBoost");
+        //    switch (collision.gameObject.tag)
+        //    {
+        //        case "Friendly":
+        //            //do nothing
+
+        //            break;
+        //        case "Finish":
+        //            StartSuccessSequence();
+        //            break;
+        //        default:
+        //            //kill player
+        //            StartDeathSequence();
+        //            break;
+        //    }
+        //}
         switch (collision.gameObject.tag)
         {
             case "Friendly":
                 //do nothing
-                print("Inner Collision");
+                //print("Inner Collision");
 
                 break;
             case "Finish":
-                print("Inner Collision");
+                //print("Inner Collision");
 
                 StartSuccessSequence();
                 break;
             default:
                 //kill player
-                print("Inner Collision");
+                //print("Inner Collision");
 
                 StartDeathSequence();
                 break;
@@ -131,6 +175,7 @@ public class Rocket : MonoBehaviour
         {
             audioSource.PlayOneShot(mainEngine);
         }
+        //print("MainEngineParticles.Play()");
         mainEngineParticles.Play();
     }
     private void RespondToNoCollisions()
@@ -140,7 +185,8 @@ public class Rocket : MonoBehaviour
             if (state != State.FreeMode)
             {
                 state = State.FreeMode;
-            } else
+            }
+            else
             {
                 state = State.Alive;
             }

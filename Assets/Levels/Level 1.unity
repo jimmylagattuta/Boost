@@ -250,6 +250,24 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rocket Ship 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2103844065464262163, guid: ec157e9e6ed4d403795a300a5836ddd7,
+        type: 3}
+      propertyPath: mainEngineParticlesRocket
+      value: 
+      objectReference: {fileID: 6113445000832682907, guid: 9b60da65dbb0c4cf0a547bcc70b171ff,
+        type: 3}
+    - target: {fileID: 2103844065464262163, guid: ec157e9e6ed4d403795a300a5836ddd7,
+        type: 3}
+      propertyPath: mainEngineParticles
+      value: 
+      objectReference: {fileID: 6113445000832682907, guid: 9b60da65dbb0c4cf0a547bcc70b171ff,
+        type: 3}
+    - target: {fileID: 2103844065464262163, guid: ec157e9e6ed4d403795a300a5836ddd7,
+        type: 3}
+      propertyPath: smokeEngineParticles
+      value: 
+      objectReference: {fileID: 9130154926629773040, guid: c93b1901ae287418fb825c959a4824bf,
+        type: 3}
     - target: {fileID: 2103844065464262254, guid: ec157e9e6ed4d403795a300a5836ddd7,
         type: 3}
       propertyPath: m_LocalPosition.x
