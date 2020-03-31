@@ -112,6 +112,7 @@ public class Rocket : MonoBehaviour
     }
     private void RespondToThrustInput()
     {
+        print("1");
         if (Input.GetKey(KeyCode.Space))   //can thrust while rotating, thats why seperate if statements.
         {
             ApplyThrust();
@@ -124,6 +125,7 @@ public class Rocket : MonoBehaviour
     }
     private void ApplyThrust()
     {
+        print("2");
         //AddRelativeForce to make ship go in one direction
         //float thrustThisFrame = mainThrust * Time.deltaTime; doesnt work
         rigidBody.AddRelativeForce(Vector3.up * mainThrust); // * Time.deltaTime makes it frame rate independent
@@ -131,6 +133,7 @@ public class Rocket : MonoBehaviour
         {
             audioSource.PlayOneShot(mainEngine);
         }
+        print("3");
         mainEngineParticles.Play();
     }
     private void RespondToNoCollisions()
