@@ -20,7 +20,7 @@ public class Rocket : MonoBehaviour
     Rigidbody rigidBody;
     AudioSource audioSource;
 
-    enum State { Alive, Dying, Transcending, FreeMode, NoBoost };
+    enum State { Alive, Dying, Transcending, FreeMode };
     State state = State.Alive;
 
     // Start is called before the first frame update
@@ -44,46 +44,33 @@ public class Rocket : MonoBehaviour
 
         if (state == State.Alive || state == State.FreeMode)
         {
-
-            if (rigidBody.position.x >= -5f)
-            {
-
-                print("thrustors off");
-                state = State.NoBoost;
-                audioSource.PlayOneShot(explosionSound);
-
-                Invoke("StopParticles", 0.2F);
-
-            }
             RespondToThrustInput();
             RespondToRotateInput();
             RespondToNextLevel();
             RespondToNoCollisions();
         }
     }
-    private void StopParticles()
-    {
-        mainEngineParticles.Stop();
-        audioSource.Stop();
-
-    }
     void OnCollisionEnter(Collision collision)
     {
-        if (state != State.Alive || state == State.FreeMode && state != State.NoBoost) { return; } //ignore collisions
-        print("collision.gameObject.tag");
-        print(collision.gameObject.tag);
+        print("Collision");
+        if (state != State.Alive || state == State.FreeMode) { return; } //ignore collisions
 
         switch (collision.gameObject.tag)
         {
             case "Friendly":
                 //do nothing
+                print("Inner Collision");
 
                 break;
             case "Finish":
+                print("Inner Collision");
+
                 StartSuccessSequence();
                 break;
             default:
                 //kill player
+                print("Inner Collision");
+
                 StartDeathSequence();
                 break;
         }
