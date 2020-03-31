@@ -502,7 +502,7 @@ PrefabInstance:
     - target: {fileID: 2103844065464262163, guid: ec157e9e6ed4d403795a300a5836ddd7,
         type: 3}
       propertyPath: mainThrust
-      value: 50
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 2103844065464262254, guid: ec157e9e6ed4d403795a300a5836ddd7,
         type: 3}

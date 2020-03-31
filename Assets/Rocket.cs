@@ -21,6 +21,8 @@ public class Rocket : MonoBehaviour
     AudioSource audioSource;
 
     enum State { Alive, Dying, Transcending, FreeMode };
+    bool collisionsDisabled = false;
+
     State state = State.Alive;
 
     // Start is called before the first frame update
@@ -42,18 +44,33 @@ public class Rocket : MonoBehaviour
         //print(rigidBody.position.x);
         // goal
 
-        if (state == State.Alive || state == State.FreeMode)
+        if (state == State.Alive)
         {
             RespondToThrustInput();
             RespondToRotateInput();
-            RespondToNextLevel();
-            RespondToNoCollisions();
+            //RespondToNextLevel();
+            //RespondToNoCollisions();
+        }
+        if (Debug.isDebugBuild)
+        {
+            RespondToDebugKeys();
+        }
+    }
+    private void RespondToDebugKeys()
+    {
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            LoadNextLevel();
+        }
+        else if (Input.GetKeyDown(KeyCode.C))
+        {
+            collisionsDisabled = !collisionsDisabled; // toggle
         }
     }
     void OnCollisionEnter(Collision collision)
     {
         print("Collision");
-        if (state != State.Alive || state == State.FreeMode) { return; } //ignore collisions
+        if (state != State.Alive || collisionsDisabled) { return; } //ignore collisions
 
         switch (collision.gameObject.tag)
         {
